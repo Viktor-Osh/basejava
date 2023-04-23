@@ -1,6 +1,4 @@
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * Array based storage for Resumes
@@ -10,12 +8,14 @@ public class ArrayStorage {
     private int length;
 
     void clear() {
+        //Clears an array of non-null elements
         for (int i = 0; i < length; i++) {
             storage[i] = null;
         }
     }
 
     void save(Resume r) {
+        //saves the element into the array after the last non-null element
         for (int i = 0; i < storage.length; i++) {
             if (storage[i] != null) continue;
             storage[i] = r;
@@ -25,6 +25,9 @@ public class ArrayStorage {
     }
 
     Resume get(String uuid) {
+
+        //Returns the element that contains the uuid, if there is no such element print a string indicating it and return null
+
         for (Resume resume : storage) {
             if (resume == null) break;
             if (resume.uuid.equals(uuid)) {
@@ -36,6 +39,7 @@ public class ArrayStorage {
     }
 
     void delete(String uuid) {
+        // delete an element and move the rest by one
         for (int i = 0; i < storage.length; i++) {
             if (storage[i].uuid.equals(uuid)) {
                 if (storage[i + 1] != null || i + 1 != storage.length) {
@@ -64,6 +68,9 @@ public class ArrayStorage {
     }
 
     int size() {
+        /*
+      returns the number of elements in an array that are not null
+         */
         return length;
     }
 }
